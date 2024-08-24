@@ -35,7 +35,6 @@ async function main() {
                     _e
                 ) {
                     console.error(msg);
-                    debugger;
                 }
             }
             var listener = new MyBsvListener();
