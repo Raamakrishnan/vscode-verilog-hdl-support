@@ -191,6 +191,19 @@ export function activate(context: vscode.ExtensionContext) {
   initAllLanguageClients();
 
   logger.info(extensionID + ' activation finished.');
+  
+  
+  const workspaceIndexEnabled = vscode.workspace.getConfiguration().get('verilog.ctags.EnableWorkspaceIndexing', false);
+  if(workspaceIndexEnabled) {
+    logger.info(extensionID + ' workspace indexing started');
+
+    const filelistpath = vscode.workspace.getConfiguration().get('verilog.filelist', '');
+
+    let status = ctagsManager.workspaceIndex(filelistpath);
+    
+    logger.info(extensionID + ' workspace indexing ended');
+  }
+
 }
 
 function setupLanguageClient(

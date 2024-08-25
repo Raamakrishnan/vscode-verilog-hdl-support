@@ -4,6 +4,10 @@ import {exec as execNonPromise} from 'child_process';
 import * as util from 'util';
 import { Logger } from './logger';
 const exec = util.promisify(execNonPromise);
+import * as filelistparser from './filelistParser';
+import {promises as fs} from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
 // Internal representation of a symbol
 export class Symbol {
@@ -377,4 +381,27 @@ export class CtagsManager {
     const results: vscode.DefinitionLink[][] = await Promise.all(tasks);
     return results.reduce((acc, val) => acc.concat(val), []);
   }
+
+
+  async workspaceIndex(filelistpath : string) : Promise<boolean> {
+    // Check if filelist path exists
+    try {
+      await fs.access(filelistpath);
+    }
+    catch {
+      this.logger.error(`filelistpath not accessible: ${filelistpath}`);
+      return false;
+    }
+
+    // Parse filelist and get all the module files, incdir etc
+    const filelist = new filelistparser.Filelist();
+    filelist.parseFile(filelistpath);
+
+
+    // For each file, run ctags parser
+
+
+    return true;
+  }
+
 }

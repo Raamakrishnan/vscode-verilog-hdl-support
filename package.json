@@ -378,17 +378,17 @@
           "default": "none",
           "description": "A path to the installation of Universal Ctags."
         },
-        "verilog.ctags.EnableIndexing": {
+        "verilog.ctags.EnableWorkspaceIndexing": {
           "scope": "window",
           "type": "boolean",
           "default": false,
-          "description": "Enable symbol indexing using Universal Ctag"
+          "description": "[Expermiental] Enable workspace symbol indexing using Universal Ctag"
         },
         "verilog.filelist": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "description": "A path to Verilog filelist (-f <file>) that is to be used for indexing"
+          "description": "[Expermiental] A path to Verilog filelist (-f <file>) that is to be used for indexing"
         },
         "verilog.languageServer.svls.enabled": {
           "scope": "window",
